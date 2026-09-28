@@ -1,5 +1,5 @@
 
-/* Valko · Little Wolf Theme v0.2.2 FIX — opt-in only */
+/* Valko · Little Wolf Theme v0.2.3 FIX — opt-in only */
 :root.valko-theme-active {
   --valko-bg:#050B0D;
   --valko-panel:#081619;
@@ -112,7 +112,7 @@ html.valko-theme-animate #valko-mascot.is-bounce{animation:valko-bounce .62s cub
   html.valko-theme-active .mes{margin:6px 2px!important;border-radius:14px!important}
 }
 
-/* v0.2.2 FIX — preserve native SillyTavern geometry/navigation */
+/* v0.2.3 FIX — preserve native SillyTavern geometry/navigation */
 html.valko-theme-active #top-bar,
 html.valko-theme-active #top-settings-holder,
 html.valko-theme-active .drawer-content,
@@ -171,7 +171,7 @@ html.valko-theme-active .mes{
 }
 
 
-/* v0.2.2 FIX — mascot clearance + real transparent ear asset */
+/* v0.2.3 FIX — mascot clearance + real transparent ear asset */
 html.valko-theme-active #send_form.valko-mascot-dock,
 html.valko-theme-active #form_sheld.valko-mascot-dock,
 html.valko-theme-active #send_form.valko-ears-dock,
@@ -224,4 +224,22 @@ html.valko-theme-animate #valko-input-ears{
  html.valko-theme-active #valko-input-ears{
    left:14px!important;top:-42px!important;width:126px!important;
  }
+}
+
+/* v0.2.3 — TRUE transparent ears, larger and seated on composer top edge */
+html.valko-theme-active #valko-input-ears{
+  left:10px!important;
+  top:-68px!important;
+  width:190px!important;
+  height:auto!important;
+  z-index:7!important;
+  pointer-events:none!important;
+  background:transparent!important;
+}
+@media(max-width:700px){
+  html.valko-theme-active #valko-input-ears{
+    left:8px!important;
+    top:-59px!important;
+    width:170px!important;
+  }
 }
