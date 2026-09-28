@@ -7,6 +7,7 @@ const defaults = {
   animations: true,
   paws: true,
   intensity: 70,
+  pose: 'random',
 };
 
 let settings = {...defaults};
@@ -27,6 +28,8 @@ function apply() {
   document.documentElement.style.setProperty('--valko-intensity', String((settings.intensity || 70) / 100));
   const m=document.getElementById('valko-mascot');
   if (m) m.hidden = !(settings.enabled && settings.mascot);
+  const ears=document.getElementById('valko-input-ears');
+  if(ears) ears.hidden=!(settings.enabled && settings.paws);
 }
 
 
@@ -53,14 +56,21 @@ function ensureMascot() {
   const poses=[
     {src:asset('valko-chibi.png'), cls:'is-sitting'},
     {src:asset('valko-lounge.png'), cls:'is-lounging'},
+    {src:asset('valko-heart.png'), cls:'is-heart'},
   ];
   let lastPose=-1;
   const pickPose=()=>{
     if(!settings.enabled || !settings.mascot) return;
-    let i=Math.floor(Math.random()*poses.length);
-    if(poses.length>1 && i===lastPose) i=(i+1)%poses.length;
+    let i;
+    if(settings.pose==='sitting') i=0;
+    else if(settings.pose==='lounging') i=1;
+    else if(settings.pose==='heart') i=2;
+    else {
+      i=Math.floor(Math.random()*poses.length);
+      if(poses.length>1 && i===lastPose) i=(i+1)%poses.length;
+    }
     lastPose=i;
-    box.classList.remove('is-sitting','is-lounging');
+    box.classList.remove('is-sitting','is-lounging','is-heart');
     box.classList.add(poses[i].cls);
     mascotImg.src=poses[i].src;
   };
@@ -105,41 +115,46 @@ function mountSettings() {
   wrap.innerHTML=`
     <div class="inline-drawer">
       <div class="inline-drawer-toggle inline-drawer-header">
-        <b>🐺 Valko · Little Wolf Theme <small>0.7.0</small></b>
+        <b>🐺 Valko · Little Wolf</b>
         <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
       </div>
       <div class="inline-drawer-content">
         <label class="checkbox_label"><input id="valko-enabled" type="checkbox"> <span>Включить тему Valko</span></label>
-        <div class="valko-help">Безопасный тест: OFF возвращает твою текущую тему SillyTavern/Hanabi.</div>
-        <details class="valko-drawer">
-          <summary>🎨 Основа темы <span>dark · teal · glass</span></summary>
-          <label>Интенсивность свечения <input id="valko-intensity" type="range" min="20" max="100" step="5"></label>
-        </details>
-        <details class="valko-drawer">
-          <summary>🐺 Little Wolf <span>талисман</span></summary>
-          <label class="checkbox_label"><input id="valko-mascot-toggle" type="checkbox"> <span>Показывать чибика</span></label>
+        <div class="valko-clean-card">
+          <label>✨ Свечение <input id="valko-intensity" type="range" min="20" max="100" step="5"></label>
+          <label class="checkbox_label"><input id="valko-paws" type="checkbox"> <span>Ушки на панели</span></label>
+          <label class="checkbox_label"><input id="valko-mascot-toggle" type="checkbox"> <span>Показывать Валко</span></label>
           <label class="checkbox_label"><input id="valko-animations" type="checkbox"> <span>Лёгкие анимации</span></label>
-          <div class="valko-help">v0.7.1: две позы Valko; образ меняется случайно, без привязки к сцене. Новая лежащая поза — одиночный PNG.</div>
-        </details>
-        <button id="valko-preview" class="menu_button">👁 Переключить предпросмотр</button>
-        <div class="valko-version">v0.7.1 · Final Valko Skin</div>
+          <label class="valko-pose-row"><span>Образ Валко</span>
+            <select id="valko-pose">
+              <option value="random">Случайно</option>
+              <option value="sitting">Сидит</option>
+              <option value="lounging">Лежит</option>
+              <option value="heart">Сердечко 🫶🏻</option>
+            </select>
+          </label>
+        </div>
+        <button id="valko-preview" class="menu_button">👁 Предпросмотр темы</button>
       </div>
     </div>`;
   host.appendChild(wrap);
   const $=id=>wrap.querySelector('#'+id);
   $('valko-enabled').checked=settings.enabled;
   $('valko-intensity').value=settings.intensity;
+  $('valko-paws').checked=settings.paws;
   $('valko-mascot-toggle').checked=settings.mascot;
   $('valko-animations').checked=settings.animations;
+  $('valko-pose').value=settings.pose || 'random';
 
   $('valko-enabled').onchange=e=>{settings.enabled=e.target.checked;save();apply()};
   $('valko-intensity').oninput=e=>{settings.intensity=Number(e.target.value);save();apply()};
+  $('valko-paws').onchange=e=>{settings.paws=e.target.checked;save();apply()};
   $('valko-mascot-toggle').onchange=e=>{settings.mascot=e.target.checked;save();apply()};
   $('valko-animations').onchange=e=>{settings.animations=e.target.checked;save();apply()};
+  $('valko-pose').onchange=e=>{settings.pose=e.target.value;save();document.getElementById('valko-mascot')?.remove();ensureMascot();apply()};
   $('valko-preview').onclick=()=>{$('valko-enabled').click()};
   return true;
 }
-
 function init() {
   load();
   ensureMascot();
@@ -152,4 +167,4 @@ function init() {
 }
 if (document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
 else init();
-console.log('[Valko Theme] v0.7.1 ready');
+console.log('[Valko Theme] ready');
