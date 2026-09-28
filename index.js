@@ -84,7 +84,7 @@ function mountSettings() {
   wrap.innerHTML=`
     <div class="inline-drawer">
       <div class="inline-drawer-toggle inline-drawer-header">
-        <b>🐺 Valko · Little Wolf Theme <small>0.3.0</small></b>
+        <b>🐺 Valko · Little Wolf Theme <small>0.4.0</small></b>
         <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
       </div>
       <div class="inline-drawer-content">
@@ -98,10 +98,10 @@ function mountSettings() {
           <summary>🐺 Little Wolf <span>талисман</span></summary>
           <label class="checkbox_label"><input id="valko-mascot-toggle" type="checkbox"> <span>Показывать чибика</span></label>
           <label class="checkbox_label"><input id="valko-animations" type="checkbox"> <span>Лёгкие анимации</span></label>
-          <div class="valko-help">v0.3.0: дыхание, реакция на ввод и маленький bounce при отправке.</div>
+          <div class="valko-help">v0.4.0: дыхание, реакция на ввод и маленький bounce при отправке.</div>
         </details>
         <button id="valko-preview" class="menu_button">👁 Переключить предпросмотр</button>
-        <div class="valko-version">v0.3.0 · Foundation</div>
+        <div class="valko-version">v0.4.0 · Foundation</div>
       </div>
     </div>`;
   host.appendChild(wrap);
@@ -131,4 +131,4 @@ function init() {
 }
 if (document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
 else init();
-console.log('[Valko Theme] v0.3.0 ready');
+console.log('[Valko Theme] v0.4.0 ready');

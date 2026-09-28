@@ -406,3 +406,175 @@ html.valko-theme-active body.generating #send_form::after{
    width:158px!important;
  }
 }
+
+/* ===== v0.4.0 VALKO FULL TAVERN VISUAL PASS ===== */
+
+/* ears: just a few px lower, keeping same ledge */
+html.valko-theme-active #valko-input-ears{
+ bottom:calc(100% - 13px)!important;
+}
+
+/* Global atmosphere */
+html.valko-theme-active body{
+ background:
+   radial-gradient(circle at 12% 20%,rgba(53,214,208,.08),transparent 30%),
+   radial-gradient(circle at 88% 76%,rgba(101,245,236,.055),transparent 28%),
+   linear-gradient(160deg,#03090b 0%,#061113 48%,#03090b 100%)!important;
+ color:#D7EEEE!important;
+}
+html.valko-theme-active body::after{
+ content:"";
+ position:fixed; inset:0;
+ pointer-events:none; z-index:0;
+ background-image:
+   radial-gradient(circle,rgba(101,245,236,.24) 0 1px,transparent 1.5px),
+   radial-gradient(circle,rgba(53,214,208,.12) 0 1px,transparent 1.5px);
+ background-size:79px 79px,123px 123px;
+ background-position:11px 17px,43px 61px;
+ opacity:.12;
+}
+
+/* Top navigation: cold glass strip */
+html.valko-theme-active #top-bar,
+html.valko-theme-active #top-settings-holder,
+html.valko-theme-active #top-settings-holder > div{
+ background:linear-gradient(180deg,rgba(5,15,18,.94),rgba(5,11,13,.82))!important;
+ border-color:rgba(53,214,208,.20)!important;
+}
+html.valko-theme-active #top-settings-holder .drawer-icon,
+html.valko-theme-active .drawer-icon{
+ color:#9FD9DB!important;
+ text-shadow:0 0 9px rgba(53,214,208,.22);
+ transition:.18s ease;
+}
+html.valko-theme-active .drawer-icon:hover{
+ color:#65F5EC!important;
+ text-shadow:0 0 13px rgba(101,245,236,.5);
+ transform:translateY(-1px);
+}
+
+/* Drawers/settings — unmistakably Valko glass */
+html.valko-theme-active .drawer-content,
+html.valko-theme-active .inline-drawer-content,
+html.valko-theme-active .inline-drawer,
+html.valko-theme-active .popup,
+html.valko-theme-active .modal-content{
+ background:linear-gradient(145deg,rgba(4,14,17,.94),rgba(8,28,31,.84))!important;
+ border:1px solid rgba(53,214,208,.22)!important;
+ box-shadow:inset 0 1px rgba(165,255,250,.04),0 8px 28px rgba(0,0,0,.34)!important;
+}
+html.valko-theme-active .inline-drawer-header{
+ background:linear-gradient(90deg,rgba(13,36,40,.72),rgba(5,11,13,.44))!important;
+ border:1px solid rgba(53,214,208,.22)!important;
+ border-radius:14px!important;
+}
+html.valko-theme-active .inline-drawer-header:hover{
+ border-color:rgba(101,245,236,.45)!important;
+ box-shadow:0 0 14px rgba(53,214,208,.10)!important;
+}
+
+/* Buttons and controls */
+html.valko-theme-active .menu_button,
+html.valko-theme-active button,
+html.valko-theme-active input[type="button"]{
+ background:linear-gradient(180deg,rgba(18,56,61,.68),rgba(5,18,21,.86))!important;
+ border:1px solid rgba(53,214,208,.30)!important;
+ color:#D7EEEE!important;
+ border-radius:12px!important;
+ box-shadow:inset 0 1px rgba(165,255,250,.06)!important;
+}
+html.valko-theme-active .menu_button:hover,
+html.valko-theme-active button:hover{
+ border-color:rgba(101,245,236,.62)!important;
+ box-shadow:0 0 15px rgba(53,214,208,.18),inset 0 1px rgba(165,255,250,.10)!important;
+}
+
+/* Inputs/selects */
+html.valko-theme-active textarea,
+html.valko-theme-active input:not([type="checkbox"]):not([type="radio"]),
+html.valko-theme-active select{
+ background:rgba(3,13,16,.78)!important;
+ color:#D7EEEE!important;
+ border:1px solid rgba(53,214,208,.28)!important;
+ border-radius:12px!important;
+}
+html.valko-theme-active textarea::placeholder,
+html.valko-theme-active input::placeholder{color:#78999C!important}
+
+/* Chat itself: dark glass, cyan hairline */
+html.valko-theme-active #chat{
+ background:linear-gradient(180deg,rgba(2,9,11,.45),rgba(4,16,19,.58))!important;
+ border-left:1px solid rgba(53,214,208,.10)!important;
+ border-right:1px solid rgba(53,214,208,.10)!important;
+}
+html.valko-theme-active .mes{
+ margin:7px 6px!important;
+ border:1px solid rgba(53,214,208,.12)!important;
+ border-radius:17px!important;
+ box-shadow:0 5px 18px rgba(0,0,0,.13)!important;
+}
+html.valko-theme-active .mes:not([is_user="true"]){
+ background:linear-gradient(135deg,rgba(7,25,29,.84),rgba(5,14,17,.72))!important;
+ border-left:2px solid rgba(53,214,208,.35)!important;
+}
+html.valko-theme-active .mes[is_user="true"]{
+ background:linear-gradient(135deg,rgba(11,42,47,.72),rgba(6,20,24,.72))!important;
+ border-right:2px solid rgba(101,245,236,.30)!important;
+}
+html.valko-theme-active .name_text,
+html.valko-theme-active .mes .name_text{
+ color:#A5FFFA!important;
+ text-shadow:0 0 8px rgba(53,214,208,.18);
+}
+
+/* Composer = the centerpiece */
+html.valko-theme-active #send_form,
+html.valko-theme-active #form_sheld{
+ background:linear-gradient(145deg,rgba(3,17,20,.97),rgba(7,30,34,.94))!important;
+ border:1px solid rgba(101,245,236,.42)!important;
+ border-radius:22px!important;
+ box-shadow:
+   0 0 0 1px rgba(53,214,208,.08),
+   0 0 22px rgba(53,214,208,.10),
+   inset 0 1px rgba(165,255,250,.07)!important;
+}
+html.valko-theme-active #send_textarea{
+ background:transparent!important;
+ border:0!important;
+ box-shadow:none!important;
+}
+html.valko-theme-active #send_but{
+ color:#A5FFFA!important;
+ filter:drop-shadow(0 0 6px rgba(53,214,208,.34));
+}
+
+/* Cyan active/focus trace */
+html.valko-theme-active #send_form:focus-within,
+html.valko-theme-active #form_sheld:focus-within{
+ border-color:rgba(101,245,236,.72)!important;
+ box-shadow:0 0 25px rgba(53,214,208,.16),inset 0 1px rgba(165,255,250,.09)!important;
+}
+
+/* tiny paw signature on section titles, not everywhere */
+html.valko-theme-active .inline-drawer-header::before{
+ content:"🐾";
+ font-size:10px;
+ margin-right:6px;
+ opacity:.30;
+ filter:grayscale(1);
+}
+
+/* Scrollbar */
+html.valko-theme-active ::-webkit-scrollbar{width:7px;height:7px}
+html.valko-theme-active ::-webkit-scrollbar-track{background:rgba(3,11,13,.42)!important}
+html.valko-theme-active ::-webkit-scrollbar-thumb{
+ background:linear-gradient(#35D6D0,#12383D)!important;
+ border:1px solid rgba(165,255,250,.18)!important;
+ box-shadow:0 0 7px rgba(53,214,208,.20)!important;
+}
+
+/* Mobile restraint: preserve ST geometry */
+@media(max-width:700px){
+ html.valko-theme-active .mes{margin:5px 2px!important;border-radius:14px!important}
+ html.valko-theme-active #valko-input-ears{bottom:calc(100% - 12px)!important}
+}
