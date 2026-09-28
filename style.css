@@ -1,5 +1,5 @@
 
-/* Valko · Little Wolf Theme v0.2.1 FIX — opt-in only */
+/* Valko · Little Wolf Theme v0.2.2 FIX — opt-in only */
 :root.valko-theme-active {
   --valko-bg:#050B0D;
   --valko-panel:#081619;
@@ -112,7 +112,7 @@ html.valko-theme-animate #valko-mascot.is-bounce{animation:valko-bounce .62s cub
   html.valko-theme-active .mes{margin:6px 2px!important;border-radius:14px!important}
 }
 
-/* v0.2.1 FIX — preserve native SillyTavern geometry/navigation */
+/* v0.2.2 FIX — preserve native SillyTavern geometry/navigation */
 html.valko-theme-active #top-bar,
 html.valko-theme-active #top-settings-holder,
 html.valko-theme-active .drawer-content,
@@ -167,5 +167,61 @@ html.valko-theme-active .mes{
  html.valko-theme-active #send_form #valko-mascot,
  html.valko-theme-active #form_sheld #valko-mascot{
    width:82px!important;height:82px!important;right:-2px!important;bottom:calc(100% - 14px)!important;
+ }
+}
+
+
+/* v0.2.2 FIX — mascot clearance + real transparent ear asset */
+html.valko-theme-active #send_form.valko-mascot-dock,
+html.valko-theme-active #form_sheld.valko-mascot-dock,
+html.valko-theme-active #send_form.valko-ears-dock,
+html.valko-theme-active #form_sheld.valko-ears-dock{
+  position:relative!important;
+  overflow:visible!important;
+}
+
+/* Valko: slightly larger and moved inward/up so swipe 1/1 remains clear */
+html.valko-theme-active #send_form #valko-mascot,
+html.valko-theme-active #form_sheld #valko-mascot{
+  width:108px!important;
+  height:108px!important;
+  right:18px!important;
+  bottom:calc(100% - 8px)!important;
+  pointer-events:none!important;
+  z-index:9!important;
+}
+
+/* Real PNG ears sit on the LEFT edge of the composer */
+#valko-input-ears{display:none}
+html.valko-theme-active #valko-input-ears{
+  display:block!important;
+  position:absolute!important;
+  left:18px!important;
+  top:-50px!important;
+  width:150px!important;
+  height:auto!important;
+  object-fit:contain!important;
+  object-position:left bottom!important;
+  pointer-events:none!important;
+  z-index:7!important;
+  filter:drop-shadow(0 0 5px rgba(53,214,208,.16));
+  transform-origin:50% 100%;
+}
+html.valko-theme-animate #valko-input-ears{
+  animation:valko-ear-breathe 4s ease-in-out infinite;
+}
+@keyframes valko-ear-breathe{
+  0%,100%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-1px) scale(1.008)}
+}
+
+@media(max-width:700px){
+ html.valko-theme-active #send_form #valko-mascot,
+ html.valko-theme-active #form_sheld #valko-mascot{
+   width:96px!important;height:96px!important;right:16px!important;
+   bottom:calc(100% - 7px)!important;
+ }
+ html.valko-theme-active #valko-input-ears{
+   left:14px!important;top:-42px!important;width:126px!important;
  }
 }
