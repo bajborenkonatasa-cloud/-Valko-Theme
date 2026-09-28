@@ -1,0 +1,11 @@
+{
+  "display_name": "Valko · Little Wolf Theme",
+  "loading_order": 90,
+  "requires": [],
+  "optional": [],
+  "js": "index.js",
+  "css": "style.css",
+  "author": "Valko Theme Project",
+  "version": "0.1.0",
+  "homePage": ""
+}

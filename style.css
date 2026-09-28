@@ -1,0 +1,113 @@
+
+/* Valko · Little Wolf Theme v0.1.0 — opt-in only */
+:root.valko-theme-active {
+  --valko-bg:#050B0D;
+  --valko-panel:#081619;
+  --valko-card:#0D2428;
+  --valko-selected:#12383D;
+  --valko-cyan:#35D6D0;
+  --valko-glow:#65F5EC;
+  --valko-bright:#A5FFFA;
+  --valko-text:#D7EEEE;
+  --valko-muted:#78999C;
+  --valko-intensity:.7;
+  --SmartThemeBodyColor:var(--valko-text);
+  --SmartThemeEmColor:var(--valko-bright);
+  --SmartThemeQuoteColor:var(--valko-cyan);
+  --SmartThemeBlurTintColor:rgba(5,11,13,.82);
+  --SmartThemeBorderColor:rgba(53,214,208,.30);
+}
+
+html.valko-theme-active body {
+  color:var(--valko-text)!important;
+  background-color:var(--valko-bg)!important;
+}
+html.valko-theme-active #top-bar,
+html.valko-theme-active #top-settings-holder,
+html.valko-theme-active .drawer-content,
+html.valko-theme-active .drawer-content.openDrawer,
+html.valko-theme-active #extensions_settings,
+html.valko-theme-active #extensions_settings2 {
+  background:linear-gradient(180deg,rgba(8,22,25,.94),rgba(5,11,13,.91))!important;
+  border-color:rgba(53,214,208,.22)!important;
+}
+html.valko-theme-active .mes {
+  border:1px solid rgba(53,214,208,.15)!important;
+  background:linear-gradient(135deg,rgba(13,36,40,.68),rgba(5,11,13,.46))!important;
+  border-radius:18px!important;
+  margin:8px 6px!important;
+  box-shadow:0 8px 30px rgba(0,0,0,.18), inset 0 1px rgba(165,255,250,.03)!important;
+}
+html.valko-theme-active .mes .name_text,
+html.valko-theme-active .ch_name { color:var(--valko-bright)!important; }
+html.valko-theme-active #send_form {
+  border:1px solid rgba(53,214,208,.30)!important;
+  border-radius:22px!important;
+  background:rgba(8,22,25,.88)!important;
+  box-shadow:0 0 calc(22px * var(--valko-intensity)) rgba(53,214,208,.10)!important;
+}
+html.valko-theme-active #send_textarea {
+  color:var(--valko-text)!important;
+  background:transparent!important;
+}
+html.valko-theme-active #send_textarea:focus {
+  box-shadow:inset 0 -1px var(--valko-glow)!important;
+}
+html.valko-theme-active .menu_button,
+html.valko-theme-active select,
+html.valko-theme-active input:not([type=checkbox]):not([type=range]),
+html.valko-theme-active textarea {
+  border-color:rgba(53,214,208,.30)!important;
+}
+html.valko-theme-active .menu_button:hover {
+  box-shadow:0 0 calc(14px * var(--valko-intensity)) rgba(101,245,236,.18)!important;
+  border-color:rgba(101,245,236,.65)!important;
+}
+html.valko-theme-active ::-webkit-scrollbar-thumb {
+  background:linear-gradient(var(--valko-selected),var(--valko-cyan))!important;
+  border-radius:99px;
+}
+
+/* very faint global den texture */
+html.valko-theme-active body::before {
+  content:"";
+  position:fixed; inset:0; pointer-events:none; z-index:-1;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(53,214,208,.055),transparent 25%),
+    radial-gradient(circle at 85% 75%,rgba(101,245,236,.035),transparent 28%);
+}
+
+/* Mascot */
+#valko-mascot {
+  position:fixed;
+  right:8px; bottom:62px;
+  width:118px; height:118px;
+  z-index:1800;
+  pointer-events:none;
+  transform-origin:50% 100%;
+  filter:drop-shadow(0 8px 15px rgba(0,0,0,.55)) drop-shadow(0 0 8px rgba(53,214,208,.12));
+}
+#valko-mascot[hidden]{display:none!important}
+#valko-mascot img{width:100%;height:100%;object-fit:contain;display:block}
+#valko-mascot .valko-sleep{display:none;position:absolute;right:2px;top:4px;color:#A5FFFA;font-weight:700}
+html.valko-theme-animate #valko-mascot{animation:valko-breathe 3.8s ease-in-out infinite}
+html.valko-theme-animate #valko-mascot.is-listening{animation:valko-listen .55s ease-in-out infinite alternate}
+html.valko-theme-animate #valko-mascot.is-bounce{animation:valko-bounce .62s cubic-bezier(.2,.9,.25,1)}
+@keyframes valko-breathe{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-1px) scale(1.012)}}
+@keyframes valko-listen{from{transform:rotate(-1deg) translateY(0)}to{transform:rotate(1deg) translateY(-3px)}}
+@keyframes valko-bounce{0%,100%{transform:translateY(0) scale(1)}40%{transform:translateY(-12px) scale(1.04)}70%{transform:translateY(2px) scale(.99)}}
+
+/* Extension settings */
+#valko-theme-settings{margin-top:8px}
+#valko-theme-settings .valko-help{font-size:.82em;opacity:.62;margin:4px 0 8px 26px;line-height:1.3}
+#valko-theme-settings .valko-drawer{border:1px solid rgba(53,214,208,.15);border-radius:12px;margin:7px 0;overflow:hidden}
+#valko-theme-settings .valko-drawer>summary{padding:10px;cursor:pointer;list-style:none;font-weight:650}
+#valko-theme-settings .valko-drawer>summary span{float:right;font-size:.8em;opacity:.48;font-weight:400}
+#valko-theme-settings .valko-drawer>label{display:flex;align-items:center;gap:8px;padding:7px 10px}
+#valko-theme-settings input[type=range]{flex:1}
+#valko-theme-settings .valko-version{opacity:.42;font-size:.78em;margin-top:7px}
+
+@media(max-width:700px){
+  #valko-mascot{width:92px;height:92px;right:4px;bottom:58px}
+  html.valko-theme-active .mes{margin:6px 2px!important;border-radius:14px!important}
+}
