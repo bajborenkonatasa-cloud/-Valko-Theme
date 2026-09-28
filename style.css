@@ -578,3 +578,44 @@ html.valko-theme-active ::-webkit-scrollbar-thumb{
  html.valko-theme-active .mes{margin:5px 2px!important;border-radius:14px!important}
  html.valko-theme-active #valko-input-ears{bottom:calc(100% - 12px)!important}
 }
+
+/* ===== v0.5.0 LITTLE WOLF ALIVE ===== */
+/* ears: final tiny drop so the fur rests on the composer rim */
+html.valko-theme-active #valko-input-ears{bottom:calc(100% - 17px)!important}
+@media(max-width:700px){html.valko-theme-active #valko-input-ears{bottom:calc(100% - 16px)!important}}
+
+/* ears listen while typing */
+html.valko-theme-animate #valko-input-ears.is-alert{
+ animation:valko-ears-alert .34s ease-out 1!important;
+ filter:drop-shadow(0 0 9px rgba(101,245,236,.28));
+}
+@keyframes valko-ears-alert{0%{transform:translateY(2px) scaleY(.97)}55%{transform:translateY(-5px) scaleY(1.035)}100%{transform:translateY(0) scale(1)}}
+
+/* mascot states */
+html.valko-theme-animate #valko-mascot.is-generating{animation:valko-wolf-watch 1.35s ease-in-out infinite!important}
+html.valko-theme-animate #valko-mascot.is-done{animation:valko-wolf-done .55s cubic-bezier(.2,.8,.3,1.25) 1!important}
+html.valko-theme-animate #valko-mascot.is-idle{filter:saturate(.86) brightness(.92)}
+html.valko-theme-active #valko-mascot.is-idle .valko-sleep{opacity:.68!important;transform:translate(0,-5px)!important}
+@keyframes valko-wolf-watch{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-2px) rotate(-1deg)}}
+@keyframes valko-wolf-done{0%{transform:translateY(0) scale(1)}45%{transform:translateY(-8px) scale(1.035)}100%{transform:translateY(0) scale(1)}}
+
+/* Paw runner — injected by JS only during generation */
+#valko-paw-runner{display:none}
+html.valko-theme-active #valko-paw-runner.is-on{
+ display:flex;position:absolute;left:50%;top:-25px;transform:translateX(-50%);gap:8px;
+ pointer-events:none;z-index:12;color:#65F5EC;text-shadow:0 0 9px rgba(53,214,208,.42)
+}
+#valko-paw-runner span{opacity:.14;font-size:12px;animation:valko-paw-step 1.05s infinite ease-in-out}
+#valko-paw-runner span:nth-child(2){animation-delay:.18s}#valko-paw-runner span:nth-child(3){animation-delay:.36s}
+@keyframes valko-paw-step{0%,65%,100%{opacity:.12;transform:translateY(1px) scale(.9)}30%{opacity:.82;transform:translateY(-2px) scale(1.08)}}
+
+/* little wolf identity in headers without flooding the UI */
+html.valko-theme-active .drawer-content h3::before,
+html.valko-theme-active .drawer-content h4::before{content:"✦ ";color:#65F5EC;opacity:.45}
+html.valko-theme-active hr{border-color:rgba(53,214,208,.16)!important}
+html.valko-theme-active a{color:#9FEDEA}
+
+/* selected/active controls */
+html.valko-theme-active .selected,html.valko-theme-active .active{
+ --valko-active-glow:rgba(53,214,208,.13);
+}
