@@ -788,3 +788,24 @@ html.valko-theme-active ::selection{
  html.valko-theme-active .mes{border-radius:15px!important}
  html.valko-theme-active #chat::after{bottom:105px;font-size:14px}
 }
+
+/* v0.6.1 — second Valko gift pose; ears geometry intentionally untouched */
+html.valko-theme-active #send_form #valko-mascot.is-lounging,
+html.valko-theme-active #form_sheld #valko-mascot.is-lounging{
+  width:148px!important;
+  height:104px!important;
+  right:56px!important; /* a little closer to the ears, clear of swipe counter */
+  bottom:calc(100% - 10px)!important;
+}
+html.valko-theme-active #send_form #valko-mascot.is-sitting,
+html.valko-theme-active #form_sheld #valko-mascot.is-sitting{
+  /* keep the proven sitting geometry from the working build */
+}
+@media(max-width:700px){
+  html.valko-theme-active #send_form #valko-mascot.is-lounging,
+  html.valko-theme-active #form_sheld #valko-mascot.is-lounging{
+    width:136px!important;
+    height:96px!important;
+    right:48px!important;
+  }
+}

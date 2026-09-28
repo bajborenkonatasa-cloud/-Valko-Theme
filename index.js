@@ -49,6 +49,27 @@ function ensureMascot() {
   box.id='valko-mascot';
   box.hidden=true;
   box.innerHTML=`<img src="${asset('valko-chibi.png')}" alt="Valko"><span class="valko-sleep">zZ</span>`;
+  const mascotImg=box.querySelector('img');
+  const poses=[
+    {src:asset('valko-chibi.png'), cls:'is-sitting'},
+    {src:asset('valko-lounge.png'), cls:'is-lounging'},
+  ];
+  let lastPose=-1;
+  const pickPose=()=>{
+    if(!settings.enabled || !settings.mascot) return;
+    let i=Math.floor(Math.random()*poses.length);
+    if(poses.length>1 && i===lastPose) i=(i+1)%poses.length;
+    lastPose=i;
+    box.classList.remove('is-sitting','is-lounging');
+    box.classList.add(poses[i].cls);
+    mascotImg.src=poses[i].src;
+  };
+  pickPose();
+  const schedulePose=()=>{
+    const delay=35000+Math.floor(Math.random()*40000);
+    setTimeout(()=>{ pickPose(); schedulePose(); },delay);
+  };
+  schedulePose();
   const dock=()=>document.querySelector('#send_form') || document.querySelector('#form_sheld');
   const parent=dock();
   (parent || document.body).appendChild(box);
@@ -84,7 +105,7 @@ function mountSettings() {
   wrap.innerHTML=`
     <div class="inline-drawer">
       <div class="inline-drawer-toggle inline-drawer-header">
-        <b>🐺 Valko · Little Wolf Theme <small>0.6.0</small></b>
+        <b>🐺 Valko · Little Wolf Theme <small>0.6.1</small></b>
         <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
       </div>
       <div class="inline-drawer-content">
@@ -98,10 +119,10 @@ function mountSettings() {
           <summary>🐺 Little Wolf <span>талисман</span></summary>
           <label class="checkbox_label"><input id="valko-mascot-toggle" type="checkbox"> <span>Показывать чибика</span></label>
           <label class="checkbox_label"><input id="valko-animations" type="checkbox"> <span>Лёгкие анимации</span></label>
-          <div class="valko-help">v0.6.0: дыхание, реакция на ввод и маленький bounce при отправке.</div>
+          <div class="valko-help">v0.6.1: две позы Valko; образ меняется случайно, без привязки к сцене.</div>
         </details>
         <button id="valko-preview" class="menu_button">👁 Переключить предпросмотр</button>
-        <div class="valko-version">v0.6.0 · Foundation</div>
+        <div class="valko-version">v0.6.1 · Random Valko Gift</div>
       </div>
     </div>`;
   host.appendChild(wrap);
@@ -131,4 +152,4 @@ function init() {
 }
 if (document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
 else init();
-console.log('[Valko Theme] v0.6.0 ready');
+console.log('[Valko Theme] v0.6.1 ready');
