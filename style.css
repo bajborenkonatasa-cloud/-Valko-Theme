@@ -578,3 +578,213 @@ html.valko-theme-active ::-webkit-scrollbar-thumb{
  html.valko-theme-active .mes{margin:5px 2px!important;border-radius:14px!important}
  html.valko-theme-active #valko-input-ears{bottom:calc(100% - 12px)!important}
 }
+
+
+/* ==========================================================
+   v0.6.0 — VALKO LITTLE WOLF: FINAL VISUAL LAYER
+   CSS-only visual layer. Mascot + ears geometry untouched.
+   ========================================================== */
+
+html.valko-theme-active{
+ --vw-bg:#03090b;
+ --vw-panel:rgba(5,17,20,.90);
+ --vw-panel2:rgba(8,28,32,.82);
+ --vw-card:rgba(10,37,42,.68);
+ --vw-line:rgba(53,214,208,.27);
+ --vw-line-hi:rgba(101,245,236,.58);
+ --vw-cyan:#35D6D0;
+ --vw-glow:#65F5EC;
+ --vw-white:#D7EEEE;
+ --vw-muted:#78999C;
+}
+
+/* Deep oceanic ambient veil */
+html.valko-theme-active body{
+ background-color:var(--vw-bg)!important;
+ background-image:
+   radial-gradient(circle at 14% 12%,rgba(53,214,208,.075),transparent 24%),
+   radial-gradient(circle at 86% 66%,rgba(53,214,208,.045),transparent 29%),
+   linear-gradient(155deg,rgba(2,8,10,.18),rgba(4,18,21,.32))!important;
+}
+
+/* Frosted surfaces throughout Tavern */
+html.valko-theme-active .drawer-content,
+html.valko-theme-active .inline-drawer-content,
+html.valko-theme-active .popup,
+html.valko-theme-active .modal-content,
+html.valko-theme-active #sheld{
+ backdrop-filter:blur(12px) saturate(112%)!important;
+ -webkit-backdrop-filter:blur(12px) saturate(112%)!important;
+}
+
+/* Extension/settings rows become wolf-glass strips */
+html.valko-theme-active .inline-drawer{
+ border:1px solid rgba(53,214,208,.16)!important;
+ border-radius:15px!important;
+ margin-block:5px!important;
+ overflow:hidden;
+ background:linear-gradient(100deg,rgba(5,18,21,.74),rgba(8,31,35,.42))!important;
+ box-shadow:inset 0 1px rgba(165,255,250,.035)!important;
+}
+html.valko-theme-active .inline-drawer-header{
+ position:relative;
+ border:0!important;
+ border-bottom:1px solid rgba(53,214,208,.13)!important;
+ background:linear-gradient(90deg,rgba(9,37,42,.65),rgba(4,14,17,.44))!important;
+}
+html.valko-theme-active .inline-drawer-header::before{
+ content:"";
+ width:5px;height:5px;border-radius:50%;
+ margin-right:8px;flex:0 0 auto;
+ background:rgba(101,245,236,.50);
+ box-shadow:-6px 2px 0 rgba(53,214,208,.18),6px 2px 0 rgba(53,214,208,.18);
+}
+
+/* active/open drawer gets a clean cyan edge */
+html.valko-theme-active .inline-drawer:has(.inline-drawer-content:not([style*="display: none"])){
+ border-color:rgba(101,245,236,.34)!important;
+ box-shadow:0 0 18px rgba(53,214,208,.06),inset 0 1px rgba(165,255,250,.05)!important;
+}
+
+/* Character / chat cards */
+html.valko-theme-active .character_select,
+html.valko-theme-active .group_select,
+html.valko-theme-active .recentChat,
+html.valko-theme-active .recent-chat,
+html.valko-theme-active .bogus_folder_select{
+ background:linear-gradient(135deg,rgba(7,28,32,.78),rgba(3,13,16,.76))!important;
+ border:1px solid rgba(53,214,208,.19)!important;
+ border-radius:15px!important;
+ box-shadow:0 6px 18px rgba(0,0,0,.14)!important;
+}
+html.valko-theme-active .character_select:hover,
+html.valko-theme-active .group_select:hover{
+ border-color:rgba(101,245,236,.45)!important;
+ box-shadow:0 0 16px rgba(53,214,208,.10)!important;
+}
+
+/* avatars get cold halo */
+html.valko-theme-active .avatar img,
+html.valko-theme-active .mesAvatarWrapper img{
+ border:1px solid rgba(101,245,236,.28)!important;
+ box-shadow:0 0 0 2px rgba(53,214,208,.035),0 0 12px rgba(53,214,208,.08)!important;
+}
+
+/* chat message cards — more distinct, still dark */
+html.valko-theme-active .mes{
+ overflow:visible!important;
+}
+html.valko-theme-active .mes:not([is_user="true"]){
+ background:
+  linear-gradient(120deg,rgba(6,25,29,.90),rgba(3,13,16,.72))!important;
+ border-color:rgba(53,214,208,.17)!important;
+}
+html.valko-theme-active .mes[is_user="true"]{
+ background:
+  linear-gradient(120deg,rgba(11,43,48,.76),rgba(4,18,21,.75))!important;
+ border-color:rgba(101,245,236,.20)!important;
+}
+html.valko-theme-active .mes:not([is_user="true"])::before{
+ content:"";
+ position:absolute;left:-1px;top:18%;bottom:18%;width:2px;
+ border-radius:9px;
+ background:linear-gradient(transparent,var(--vw-cyan),transparent);
+ opacity:.55;pointer-events:none;
+}
+html.valko-theme-active .mes[is_user="true"]::before{
+ content:"";
+ position:absolute;right:-1px;top:18%;bottom:18%;width:2px;
+ border-radius:9px;
+ background:linear-gradient(transparent,var(--vw-glow),transparent);
+ opacity:.42;pointer-events:none;
+}
+
+/* Names and metadata */
+html.valko-theme-active .name_text,
+html.valko-theme-active .ch_name{
+ color:#A5FFFA!important;
+ letter-spacing:.15px;
+ text-shadow:0 0 9px rgba(53,214,208,.16);
+}
+html.valko-theme-active .timestamp,
+html.valko-theme-active .mesIDDisplay{
+ color:var(--vw-muted)!important;
+}
+
+/* Buttons: glass medallions */
+html.valko-theme-active .menu_button,
+html.valko-theme-active button{
+ transition:border-color .16s ease,box-shadow .16s ease,transform .16s ease!important;
+}
+html.valko-theme-active .menu_button:active,
+html.valko-theme-active button:active{
+ transform:scale(.97);
+}
+
+/* inputs */
+html.valko-theme-active input:not([type="checkbox"]):not([type="radio"]),
+html.valko-theme-active textarea,
+html.valko-theme-active select{
+ caret-color:var(--vw-glow)!important;
+}
+html.valko-theme-active input:focus,
+html.valko-theme-active textarea:focus,
+html.valko-theme-active select:focus{
+ outline:none!important;
+ border-color:rgba(101,245,236,.55)!important;
+ box-shadow:0 0 0 1px rgba(53,214,208,.08),0 0 15px rgba(53,214,208,.08)!important;
+}
+
+/* Wolf-paw decorative signature in chat — monochrome, subtle */
+html.valko-theme-active #chat::after{
+ content:"🐾";
+ position:fixed;
+ left:12px;
+ bottom:118px;
+ font-size:17px;
+ opacity:.055;
+ filter:grayscale(1);
+ pointer-events:none;
+ z-index:1;
+}
+
+/* top bar icon polish without changing geometry */
+html.valko-theme-active #top-settings-holder i,
+html.valko-theme-active #top-settings-holder .fa-solid,
+html.valko-theme-active #top-settings-holder .fa-regular{
+ color:#8DB9BC!important;
+ text-shadow:0 0 8px rgba(53,214,208,.10);
+}
+html.valko-theme-active #top-settings-holder i:hover,
+html.valko-theme-active #top-settings-holder .fa-solid:hover,
+html.valko-theme-active #top-settings-holder .fa-regular:hover{
+ color:#A5FFFA!important;
+ text-shadow:0 0 11px rgba(101,245,236,.34);
+}
+
+/* Little Wolf easter egg — tiny fang/moon seal, visual only */
+html.valko-theme-active #top-settings-holder::after{
+ content:"☾ ᨒ";
+ position:absolute;
+ right:7px;
+ bottom:-15px;
+ font-size:9px;
+ letter-spacing:2px;
+ color:rgba(101,245,236,.30);
+ text-shadow:0 0 7px rgba(53,214,208,.20);
+ pointer-events:none;
+}
+
+/* selection + links */
+html.valko-theme-active a{color:#8DE7E2!important}
+html.valko-theme-active ::selection{
+ background:rgba(53,214,208,.30)!important;
+ color:#F1FFFF!important;
+}
+
+/* Compact mobile tuning only — no mascot/ears selectors here */
+@media(max-width:700px){
+ html.valko-theme-active .inline-drawer{border-radius:13px!important;margin-block:4px!important}
+ html.valko-theme-active .mes{border-radius:15px!important}
+ html.valko-theme-active #chat::after{bottom:105px;font-size:14px}
+}
