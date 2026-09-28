@@ -1,5 +1,5 @@
 
-/* Valko · Little Wolf Theme v0.2.4 FIX — opt-in only */
+/* Valko · Little Wolf Theme v0.3.0 — opt-in only */
 :root.valko-theme-active {
   --valko-bg:#050B0D;
   --valko-panel:#081619;
@@ -112,7 +112,7 @@ html.valko-theme-animate #valko-mascot.is-bounce{animation:valko-bounce .62s cub
   html.valko-theme-active .mes{margin:6px 2px!important;border-radius:14px!important}
 }
 
-/* v0.2.4 FIX — preserve native SillyTavern geometry/navigation */
+/* v0.3.0 — preserve native SillyTavern geometry/navigation */
 html.valko-theme-active #top-bar,
 html.valko-theme-active #top-settings-holder,
 html.valko-theme-active .drawer-content,
@@ -171,7 +171,7 @@ html.valko-theme-active .mes{
 }
 
 
-/* v0.2.4 FIX — mascot clearance + real transparent ear asset */
+/* v0.3.0 — mascot clearance + real transparent ear asset */
 html.valko-theme-active #send_form.valko-mascot-dock,
 html.valko-theme-active #form_sheld.valko-mascot-dock,
 html.valko-theme-active #send_form.valko-ears-dock,
@@ -268,4 +268,141 @@ html.valko-theme-active #valko-input-ears{
     top:-30px!important;
     width:170px!important;
   }
+}
+
+/* v0.3.0 — Little Wolf visual pass.
+   IMPORTANT: no layout dimensions of Tavern are changed. */
+
+/* EARS: same visual ledge as Valko, but left side. */
+html.valko-theme-active #valko-input-ears{
+  left:8px!important;
+  top:auto!important;
+  bottom:calc(100% - 7px)!important;
+  width:176px!important;
+  height:auto!important;
+  pointer-events:none!important;
+  z-index:8!important;
+}
+
+/* Palette + glass */
+html.valko-theme-active{
+ --valko-bg:#050B0D;
+ --valko-panel:rgba(8,22,25,.82);
+ --valko-card:rgba(13,36,40,.72);
+ --valko-hi:#12383D;
+ --valko-teal:#35D6D0;
+ --valko-glow:#65F5EC;
+ --valko-text:#D7EEEE;
+ --valko-muted:#78999C;
+}
+html.valko-theme-active body{
+ color:var(--valko-text)!important;
+ background-color:var(--valko-bg)!important;
+}
+html.valko-theme-active #chat,
+html.valko-theme-active #sheld,
+html.valko-theme-active .drawer-content,
+html.valko-theme-active .inline-drawer-content,
+html.valko-theme-active .popup,
+html.valko-theme-active .modal-content{
+ background-color:rgba(5,11,13,.58)!important;
+ backdrop-filter:blur(10px);
+}
+html.valko-theme-active .mes{
+ border-color:rgba(53,214,208,.16)!important;
+}
+html.valko-theme-active .mes:not([is_user="true"]){
+ background:linear-gradient(135deg,rgba(13,36,40,.58),rgba(5,11,13,.28))!important;
+}
+html.valko-theme-active .mes[is_user="true"]{
+ background:linear-gradient(135deg,rgba(18,56,61,.48),rgba(5,11,13,.22))!important;
+}
+html.valko-theme-active textarea,
+html.valko-theme-active input,
+html.valko-theme-active select{
+ border-color:rgba(53,214,208,.32)!important;
+}
+html.valko-theme-active textarea:focus,
+html.valko-theme-active input:focus{
+ border-color:rgba(101,245,236,.65)!important;
+ box-shadow:0 0 14px rgba(53,214,208,.16)!important;
+}
+html.valko-theme-active button:hover,
+html.valko-theme-active .menu_button:hover{
+ box-shadow:0 0 12px rgba(53,214,208,.14);
+}
+
+/* Paw accents: restrained, decorative only */
+html.valko-theme-active .mes:not([is_user="true"]) .mes_block::after{
+ content:"🐾";
+ position:absolute;
+ right:9px; bottom:6px;
+ font-size:11px;
+ opacity:.13;
+ filter:grayscale(1);
+ pointer-events:none;
+}
+html.valko-theme-active .mes[is_user="true"] .mes_block::after{
+ content:"✦";
+ position:absolute;
+ right:9px; bottom:6px;
+ font-size:10px;
+ color:var(--valko-glow);
+ opacity:.18;
+ pointer-events:none;
+}
+html.valko-theme-active .mes_block{position:relative}
+
+/* Subtle ambient particles/paw pattern, no geometry changes */
+html.valko-theme-active body::before{
+ content:"✦   ·   🐾      ·   ✦      ·      🐾   ·   ✦";
+ position:fixed;
+ left:5vw; right:5vw; top:18vh;
+ white-space:pre-wrap;
+ word-spacing:7vw;
+ line-height:24vh;
+ font-size:12px;
+ color:var(--valko-glow);
+ opacity:.025;
+ pointer-events:none;
+ z-index:0;
+}
+
+/* Cold scrollbar */
+html.valko-theme-active ::-webkit-scrollbar-thumb{
+ background:linear-gradient(rgba(53,214,208,.48),rgba(18,56,61,.72))!important;
+ border-radius:999px!important;
+}
+html.valko-theme-active ::selection{
+ background:rgba(53,214,208,.28);
+ color:var(--valko-text);
+}
+
+/* Generating: quiet running paws */
+html.valko-theme-active body.is-generating #send_form::after,
+html.valko-theme-active body.generating #send_form::after{
+ content:"🐾  ·  🐾  ·  🐾";
+ position:absolute;
+ left:50%;
+ top:-19px;
+ transform:translateX(-50%);
+ color:var(--valko-glow);
+ font-size:11px;
+ opacity:.55;
+ pointer-events:none;
+ animation:valko-paw-run 1.2s ease-in-out infinite;
+}
+@keyframes valko-paw-run{
+ 0%,100%{opacity:.22;letter-spacing:0}
+ 50%{opacity:.72;letter-spacing:2px}
+}
+
+/* Keep mobile compact. */
+@media(max-width:700px){
+ html.valko-theme-active #valko-input-ears{
+   left:5px!important;
+   top:auto!important;
+   bottom:calc(100% - 6px)!important;
+   width:158px!important;
+ }
 }
