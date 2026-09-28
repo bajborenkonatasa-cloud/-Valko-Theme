@@ -1,4 +1,7 @@
-# Valko · Little Wolf Theme v0.2.0 — Mega UI
-Safe opt-in global SillyTavern skin. Master OFF restores the underlying theme.
-Adds global dark-teal glass surfaces, chat/user distinction, wolf-ear input decoration,
-paw generation runner, richer mascot states, mobile polish, controls and scrollbar skin.
+# Valko · Little Wolf Theme v0.2.1 FIX
+Rollback-based repair from stable v0.1.0.
+- removes invasive Mega UI geometry changes
+- preserves native SillyTavern top navigation/layout
+- removes fake CSS ears
+- docks Valko mascot directly to the message input surface
+- keeps dark teal/glass recolor and safe cosmetic styling

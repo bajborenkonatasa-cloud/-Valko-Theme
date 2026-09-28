@@ -35,7 +35,10 @@ function ensureMascot() {
   box.id='valko-mascot';
   box.hidden=true;
   box.innerHTML=`<img src="${asset('valko-chibi.png')}" alt="Valko"><span class="valko-sleep">zZ</span>`;
-  document.body.appendChild(box);
+  const dock=()=>document.querySelector('#send_form') || document.querySelector('#form_sheld');
+  const parent=dock();
+  (parent || document.body).appendChild(box);
+  if(parent) parent.classList.add('valko-mascot-dock');
 
   let typingTimer;
   document.addEventListener('input', e=>{
@@ -67,7 +70,7 @@ function mountSettings() {
   wrap.innerHTML=`
     <div class="inline-drawer">
       <div class="inline-drawer-toggle inline-drawer-header">
-        <b>🐺 Valko · Little Wolf Theme <small>0.2.0</small></b>
+        <b>🐺 Valko · Little Wolf Theme <small>0.2.1</small></b>
         <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
       </div>
       <div class="inline-drawer-content">
@@ -76,62 +79,35 @@ function mountSettings() {
         <details class="valko-drawer">
           <summary>🎨 Основа темы <span>dark · teal · glass</span></summary>
           <label>Интенсивность свечения <input id="valko-intensity" type="range" min="20" max="100" step="5"></label>
-          <label class="checkbox_label"><input id="valko-paws" type="checkbox"> <span>Лапки и декоративные акценты</span></label>
         </details>
         <details class="valko-drawer">
           <summary>🐺 Little Wolf <span>талисман</span></summary>
           <label class="checkbox_label"><input id="valko-mascot-toggle" type="checkbox"> <span>Показывать чибика</span></label>
           <label class="checkbox_label"><input id="valko-animations" type="checkbox"> <span>Лёгкие анимации</span></label>
-          <div class="valko-help">v0.2.0: дыхание, реакция на ввод и маленький bounce при отправке.</div>
+          <div class="valko-help">v0.2.1: дыхание, реакция на ввод и маленький bounce при отправке.</div>
         </details>
         <button id="valko-preview" class="menu_button">👁 Переключить предпросмотр</button>
-        <div class="valko-version">v0.2.0 · Foundation</div>
+        <div class="valko-version">v0.2.1 · Foundation</div>
       </div>
     </div>`;
   host.appendChild(wrap);
   const $=id=>wrap.querySelector('#'+id);
   $('valko-enabled').checked=settings.enabled;
   $('valko-intensity').value=settings.intensity;
-  $('valko-paws').checked=settings.paws;
   $('valko-mascot-toggle').checked=settings.mascot;
   $('valko-animations').checked=settings.animations;
 
   $('valko-enabled').onchange=e=>{settings.enabled=e.target.checked;save();apply()};
   $('valko-intensity').oninput=e=>{settings.intensity=Number(e.target.value);save();apply()};
-  $('valko-paws').onchange=e=>{settings.paws=e.target.checked;save();apply()};
   $('valko-mascot-toggle').onchange=e=>{settings.mascot=e.target.checked;save();apply()};
   $('valko-animations').onchange=e=>{settings.animations=e.target.checked;save();apply()};
   $('valko-preview').onclick=()=>{$('valko-enabled').click()};
   return true;
 }
 
-
-function ensurePawRunner(){
-  if(document.getElementById('valko-paw-runner')) return;
-  const p=document.createElement('div'); p.id='valko-paw-runner';
-  p.innerHTML='<span>🐾</span><span>🐾</span><span>🐾</span>';
-  document.body.appendChild(p);
-}
-function watchGeneration(){
-  const mascot=()=>document.getElementById('valko-mascot');
-  let was=false;
-  const tick=()=>{
-    const busy=!!document.querySelector('#mes_stop:not(.displayNone), #send_but[style*="display: none"], .mes_stop');
-    document.documentElement.classList.toggle('valko-generating', settings.enabled && busy);
-    const m=mascot(); if(m) m.classList.toggle('is-generating',settings.enabled&&busy);
-    if(was && !busy && settings.enabled && m){
-      m.classList.add('is-done'); setTimeout(()=>m.classList.remove('is-done'),800);
-    }
-    was=busy;
-  };
-  setInterval(tick,650);
-}
-
 function init() {
   load();
   ensureMascot();
-  ensurePawRunner();
-  watchGeneration();
   apply();
   if (!mountSettings()) {
     let tries=0;
@@ -140,4 +116,4 @@ function init() {
 }
 if (document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
 else init();
-console.log('[Valko Theme] v0.2.0 ready');
+console.log('[Valko Theme] v0.2.1 ready');
