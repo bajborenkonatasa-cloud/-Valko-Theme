@@ -119,10 +119,10 @@ function mountSettings() {
           <summary>🐺 Little Wolf <span>талисман</span></summary>
           <label class="checkbox_label"><input id="valko-mascot-toggle" type="checkbox"> <span>Показывать чибика</span></label>
           <label class="checkbox_label"><input id="valko-animations" type="checkbox"> <span>Лёгкие анимации</span></label>
-          <div class="valko-help">v0.7.0: две позы Valko; образ меняется случайно, без привязки к сцене. Новая лежащая поза — одиночный PNG.</div>
+          <div class="valko-help">v0.7.1: две позы Valko; образ меняется случайно, без привязки к сцене. Новая лежащая поза — одиночный PNG.</div>
         </details>
         <button id="valko-preview" class="menu_button">👁 Переключить предпросмотр</button>
-        <div class="valko-version">v0.7.0 · Final Valko Skin</div>
+        <div class="valko-version">v0.7.1 · Final Valko Skin</div>
       </div>
     </div>`;
   host.appendChild(wrap);
@@ -152,4 +152,4 @@ function init() {
 }
 if (document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
 else init();
-console.log('[Valko Theme] v0.7.0 ready');
+console.log('[Valko Theme] v0.7.1 ready');

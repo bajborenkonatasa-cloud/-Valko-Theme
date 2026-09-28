@@ -848,3 +848,21 @@ html.valko-theme-active #form_sheld #valko-mascot.is-lounging{
     right:66px!important;
   }
 }
+
+/* v0.7.1 — lounge pose only: larger + lowered onto the composer rim. Ears/sitting pose untouched. */
+html.valko-theme-active #send_form #valko-mascot.is-lounging,
+html.valko-theme-active #form_sheld #valko-mascot.is-lounging{
+  width:178px!important;
+  height:112px!important;
+  right:68px!important;
+  bottom:calc(100% - 25px)!important;
+}
+@media(max-width:700px){
+  html.valko-theme-active #send_form #valko-mascot.is-lounging,
+  html.valko-theme-active #form_sheld #valko-mascot.is-lounging{
+    width:164px!important;
+    height:104px!important;
+    right:60px!important;
+    bottom:calc(100% - 23px)!important;
+  }
+}
