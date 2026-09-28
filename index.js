@@ -67,7 +67,7 @@ function mountSettings() {
   wrap.innerHTML=`
     <div class="inline-drawer">
       <div class="inline-drawer-toggle inline-drawer-header">
-        <b>🐺 Valko · Little Wolf Theme <small>0.1.0</small></b>
+        <b>🐺 Valko · Little Wolf Theme <small>0.2.0</small></b>
         <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
       </div>
       <div class="inline-drawer-content">
@@ -82,10 +82,10 @@ function mountSettings() {
           <summary>🐺 Little Wolf <span>талисман</span></summary>
           <label class="checkbox_label"><input id="valko-mascot-toggle" type="checkbox"> <span>Показывать чибика</span></label>
           <label class="checkbox_label"><input id="valko-animations" type="checkbox"> <span>Лёгкие анимации</span></label>
-          <div class="valko-help">v0.1.0: дыхание, реакция на ввод и маленький bounce при отправке.</div>
+          <div class="valko-help">v0.2.0: дыхание, реакция на ввод и маленький bounce при отправке.</div>
         </details>
         <button id="valko-preview" class="menu_button">👁 Переключить предпросмотр</button>
-        <div class="valko-version">v0.1.0 · Foundation</div>
+        <div class="valko-version">v0.2.0 · Foundation</div>
       </div>
     </div>`;
   host.appendChild(wrap);
@@ -105,9 +105,33 @@ function mountSettings() {
   return true;
 }
 
+
+function ensurePawRunner(){
+  if(document.getElementById('valko-paw-runner')) return;
+  const p=document.createElement('div'); p.id='valko-paw-runner';
+  p.innerHTML='<span>🐾</span><span>🐾</span><span>🐾</span>';
+  document.body.appendChild(p);
+}
+function watchGeneration(){
+  const mascot=()=>document.getElementById('valko-mascot');
+  let was=false;
+  const tick=()=>{
+    const busy=!!document.querySelector('#mes_stop:not(.displayNone), #send_but[style*="display: none"], .mes_stop');
+    document.documentElement.classList.toggle('valko-generating', settings.enabled && busy);
+    const m=mascot(); if(m) m.classList.toggle('is-generating',settings.enabled&&busy);
+    if(was && !busy && settings.enabled && m){
+      m.classList.add('is-done'); setTimeout(()=>m.classList.remove('is-done'),800);
+    }
+    was=busy;
+  };
+  setInterval(tick,650);
+}
+
 function init() {
   load();
   ensureMascot();
+  ensurePawRunner();
+  watchGeneration();
   apply();
   if (!mountSettings()) {
     let tries=0;
@@ -116,4 +140,4 @@ function init() {
 }
 if (document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true});
 else init();
-console.log('[Valko Theme] v0.1.0 ready');
+console.log('[Valko Theme] v0.2.0 ready');
