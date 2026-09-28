@@ -809,3 +809,42 @@ html.valko-theme-active #form_sheld #valko-mascot.is-sitting{
     right:48px!important;
   }
 }
+
+/* v0.7.0 FINAL — own visual skin, no inherited Azure/native wallpaper bleeding through.
+   Geometry is intentionally untouched: only paint/background layers are normalized. */
+html.valko-theme-active body,
+html.valko-theme-active #sheld,
+html.valko-theme-active #chat,
+html.valko-theme-active #top-bar,
+html.valko-theme-active #top-settings-holder,
+html.valko-theme-active .drawer-content,
+html.valko-theme-active .drawer-content.openDrawer,
+html.valko-theme-active #extensions_settings,
+html.valko-theme-active #extensions_settings2{
+  background-image:none!important;
+}
+html.valko-theme-active body{
+  background:#050B0D!important;
+}
+html.valko-theme-active #sheld,
+html.valko-theme-active #chat{
+  background-color:rgba(5,11,13,.72)!important;
+}
+
+/* Final mascot placement. Sitting pose stays at the already-approved position.
+   New lounge pose is wider/flatter and sits closer to the ears without covering text controls. */
+html.valko-theme-active #send_form #valko-mascot.is-lounging,
+html.valko-theme-active #form_sheld #valko-mascot.is-lounging{
+  width:158px!important;
+  height:100px!important;
+  right:72px!important;
+  bottom:calc(100% - 8px)!important;
+}
+@media(max-width:700px){
+  html.valko-theme-active #send_form #valko-mascot.is-lounging,
+  html.valko-theme-active #form_sheld #valko-mascot.is-lounging{
+    width:144px!important;
+    height:92px!important;
+    right:66px!important;
+  }
+}
